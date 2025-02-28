@@ -1,1 +1,81 @@
-<p>list works!</p>
+<app-header></app-header>
+<div class="merchant-list">
+    <h2 class="merchant-list__title">Lista de Comerciantes</h2>
+  
+    <div class="merchant-list__actions">
+      <!-- Botón para crear comerciante -->
+      <button class="merchant-list__button merchant-list__button--create">
+        Nuevo Comerciante
+      </button>
+  
+      <!-- Botón para descargar CSV (Solo Administrador) -->
+       @if(userService.getUserInfo().role === 'Administrador'){
+        <button 
+        class="merchant-list__button merchant-list__button--download" 
+        (click)="downloadCSV()">
+        Descargar Reporte CSV
+        </button>
+       }
+      
+    </div>
+  
+    <table class="merchant-list__table">
+      <thead class="merchant-list__table-head">
+        <tr class="merchant-list__row">
+          <th class="merchant-list__header">Nombre/Razón Social</th>
+          <th class="merchant-list__header">Teléfono</th>
+          <th class="merchant-list__header">Correo Electrónico</th>
+          <th class="merchant-list__header">Fecha Registro</th>
+          <th class="merchant-list__header">Estado</th>
+          <th class="merchant-list__header">Acciones</th>
+        </tr>
+      </thead>
+      <tbody class="merchant-list__table-body">
+        @for (merchant of merchants; track $index) {
+            <tr class="merchant-list__row">
+                <td class="merchant-list__cell">{{ merchant.businessName }}</td>
+                <td class="merchant-list__cell">{{ merchant.phone }}</td>
+                <td class="merchant-list__cell">{{ merchant.email }}</td>
+                <td class="merchant-list__cell">{{ merchant.registrationDate }}</td>
+                
+                <td class="merchant-list__cell">{{ merchant.status }}</td>
+                <td class="merchant-list__cell merchant-list__cell--actions">
+                  <button class="merchant-list__action-button merchant-list__action-button--edit" (click)="editMerchant(merchant.merchantId)">
+                    Editar
+                  </button>
+                  <button class="merchant-list__action-button merchant-list__action-button--toggle" (click)="toggleStatus(merchant.merchantId, merchant.status)">
+                    {{ merchant.status === 'Activo' ? 'Inactivar' : 'Activar' }}
+                  </button>
+                  @if (userService.getUserInfo().role === 'Administrador') {
+                    <button 
+                    class="merchant-list__action-button merchant-list__action-button--delete" 
+                    
+                    (click)="deleteMerchant(merchant.merchantId)">
+                    Eliminar
+                  </button>
+                  }
+                  
+                </td>
+              </tr>
+        }
+        
+      </tbody>
+    </table>
+  
+    <!-- Paginación -->
+    <div class="merchant-list__pagination">
+      <label class="merchant-list__pagination-label">Registros por página:</label>
+      <select 
+        class="merchant-list__pagination-select" 
+        [(ngModel)]="itemsPerPage" 
+        (change)="getMerchants()">
+        @for (size of [5, 10, 15]; track $index) {
+            <option 
+            class="merchant-list__pagination-option" 
+            [value]="size">{{ size }}
+            </option>
+        }
+        
+      </select>
+    </div>
+  </div>

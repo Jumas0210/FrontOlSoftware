@@ -1,1 +1,32 @@
-<p>login works!</p>
+<app-header></app-header>
+<div class="container">
+  <div class="login-container">
+    <p class="login-message">Debes iniciar sesión para ingresar a la plataforma</p>
+    <div class="login">
+      <p class="login__description">Digita tu Correo Electrónico y la contraseña</p>
+      <hr class="login-divider"> <!-- Línea negra de separación -->
+      <br>
+      <form [formGroup]="loginForm" class="form" (submit)="login()">
+        <input
+          type="email"
+          class="form__input"
+          placeholder="Correo Electrico"
+          formControlName="user"
+        />
+        <input
+          type="password"
+          class="form__input"
+          placeholder="Contraseña"
+          formControlName="password"
+        />
+        <label class="terms">
+          <input type="checkbox" formControlName="acceptTerms" /> Acepto los
+          términos y condiciones
+        </label>
+        <button class="form__action" type="submit" [disabled]="loginForm.invalid">
+          Iniciar sesión
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,44 @@
+.header {
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    width: auto;
+    background-color: #ffffff;
+    padding: 5px;
+  
+    &__logo {
+        img {
+            max-width: 100%; 
+            height: 5rem; 
+        }
+    }
+  
+    &__text {
+        font-size: 1.2rem;
+        margin-right: 1rem;
+        font-weight: bold;
+        text-align: right; 
+    }
+
+    &__user {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        font-size: 1rem;
+        margin-right: 1rem;
+    }
+
+    .logout-button {
+        background-color: #d9534f;
+        color: white;
+        border: none;
+        padding: 8px 12px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 0.9rem;
+
+        &:hover {
+            background-color: #c9302c;
+        }
+    }
+}
