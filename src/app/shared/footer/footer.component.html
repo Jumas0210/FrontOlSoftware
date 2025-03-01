@@ -1,0 +1,10 @@
+<footer class="merchant-footer">
+    @if (isEditMode) {
+        <div class="merchant-footer__summary">
+            <p class="merchant-footer__item"><strong class="merchant-footer__label">Total Ingresos:</strong> <span class="merchant-footer__value">{{ totalRevenue }}</span></p>
+            <p class="merchant-footer__item"><strong class="merchant-footer__label">Total Empleados:</strong> <span class="merchant-footer__value">{{ totalEmployees }}</span></p>
+        </div>
+    } @else {
+        <p class="merchant-footer__message">Prueba técnica de uso exclusivo de OlSoftware</p>
+    }         
+</footer>

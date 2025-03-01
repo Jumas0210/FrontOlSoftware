@@ -1,1 +1,84 @@
-<p>form works!</p>
+<app-header></app-header>
+<main class="main-content">    
+    <h2 class="page-title">{{ isEditMode ? 'Editar Comerciante' : 'Crear Comerciante' }}</h2>
+    <div class="merchant-form">
+    <form class="merchant-form__form" [formGroup]="merchantForm" (ngSubmit)="submitForm()">
+        <div class="merchant-form__header">
+        <h3 class="merchant-form__section-title">Datos Generales</h3>
+        </div>
+        
+        <div class="merchant-form__fields">
+        <div class="merchant-form__row">
+            <div class="merchant-form__field">
+            <label class="merchant-form__label" for="businessName">Nombre o Razón Social</label>
+            <input class="merchant-form__input" type="text" id="businessName" formControlName="businessName" required>
+            </div>
+            
+            <div class="merchant-form__field">
+            <label class="merchant-form__label" for="department">Departamento</label>
+            <select class="merchant-form__select" id="department" formControlName="department" (change)="onDepartmentChange()">
+                <option value="" disabled selected>Seleccione un Departamento</option>
+                @for (department of departments; track $index) {
+                <option class="merchant-form__option" [value]="department">{{ department }}</option>
+                }
+            </select>
+            </div>
+        </div>
+        
+        <div class="merchant-form__row">
+                
+            <div class="merchant-form__field">
+            <label class="merchant-form__label" for="phone">Teléfono (Opcional)</label>
+            <input class="merchant-form__input" type="text" id="phone" formControlName="phone">
+            </div>
+
+            <div class="merchant-form__field">
+                <label class="merchant-form__label" for="city">Municipio o Ciudad</label>
+                <select class="merchant-form__select" id="city" formControlName="city" [disabled]="municipalities.length === 0">
+                @if (isEditMode) {
+                    <option value="municipaliti" disabled selected>{{municipaliti}}</option>
+                }
+                <option value="" disabled selected>Seleccione un Municipio</option>              
+                @for (municipalitie of municipalities; track $index) {
+                    <option class="merchant-form__option" [value]="municipalitie">{{ municipalitie }}</option>
+                }
+                </select>
+            </div>
+        </div>
+        
+        <div class="merchant-form__row">
+            <div class="merchant-form__field">
+            <label class="merchant-form__label" for="email">Correo Electrónico (Opcional)</label>
+            <input class="merchant-form__input" type="email" id="email" formControlName="email">
+            </div>
+        
+            <div class="merchant-form__field">
+            <label class="merchant-form__label" for="status">Estado</label>
+            <select class="merchant-form__select" id="status" formControlName="status">
+                <option class="merchant-form__option" value="Active">Activo</option>
+                <option class="merchant-form__option" value="Inactive">Inactivo</option>
+            </select>
+            </div>
+        </div>
+        
+        <div class="merchant-form__row">
+            <div class="merchant-form__field merchant-form__field--checkbox">
+            <label class="merchant-form__label merchant-form__label--checkbox">
+                <input class="merchant-form__checkbox" type="checkbox" formControlName="hasEstablishments"> ¿Posee establecimientos?
+            </label>
+            </div>
+        </div>
+        </div>
+        <div class="merchant-form__actions">
+        <button class="merchant-form__submit" type="submit" [disabled]="merchantForm.invalid">
+            {{ isEditMode ? 'Actualizar' : 'Crear' }} Comerciante
+        </button>
+        </div>
+    </form>
+    </div>
+</main>
+<app-footer 
+  [isEditMode]="isEditMode" 
+  [totalRevenue]="totalRevenue" 
+  [totalEmployees]="totalEmployees">
+</app-footer>

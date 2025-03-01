@@ -31,6 +31,14 @@ export class HeaderComponent {
     return this.userService.isAuthenticated();
   }
 
+  public listNav(){
+    this.router.navigate(['/dashboard/list']);
+  }
+
+  public formNav(){
+    this.router.navigate(['/dashboard/form']);
+  }
+
   public logout() {
     localStorage.clear();
     this.userService.setUserInfo('','','','');

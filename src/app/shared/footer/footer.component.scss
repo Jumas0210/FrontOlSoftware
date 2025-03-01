@@ -1,0 +1,56 @@
+.merchant-footer {
+    background-color: #233C8C;
+    height: 5rem;
+    padding: 20px;
+    border-top: 1px solid #e0e0e0;
+    margin-top: 30px;
+    color: #fff;
+  
+    &__summary {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+  
+    &__item {
+      font-size: 16px;
+      margin: 0;
+    }
+  
+    &__label {
+      font-weight: 600;
+      margin-right: 10px;
+    }
+  
+    &__value {
+      font-weight: 400;
+    }
+  
+    &__message {
+      font-size: 14px;
+      text-align: center;
+      margin: 0;
+      font-style: italic;
+    }
+  }
+  
+  // Responsive design
+  @media (max-width: 768px) {
+    .merchant-footer {
+      padding: 15px;
+  
+      &__summary {
+        flex-direction: column;
+        gap: 10px;
+      }
+  
+      &__item {
+        font-size: 14px;
+      }
+  
+      &__message {
+        font-size: 12px;
+      }
+    }
+  }

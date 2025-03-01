@@ -4,7 +4,7 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { Router } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
 import { UserService } from '../../core/services/user.service';
-import { Subject } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 
 
 @Component({
@@ -38,7 +38,9 @@ export  class LoginComponent implements OnDestroy {
       const {user, password} = this.loginForm.value;
 
 
-      this.authService.login(user,password).subscribe({
+      this.authService.login(user,password).pipe(
+        takeUntil(this.ngUnsubscribe)
+      ).subscribe({
         next:(resp) =>{
           localStorage.setItem('token', resp.token);
 

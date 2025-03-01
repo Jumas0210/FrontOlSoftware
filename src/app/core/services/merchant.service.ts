@@ -4,7 +4,7 @@ import { environment } from '../../../environments/environment.development';
 import { UserService } from './user.service';
 import { Observable } from 'rxjs';
 import { IResponse } from '../../models/response.model';
-import { IMerchant } from '../../models/merchant.model';
+import { IBodyMerchant, IMerchant } from '../../models/merchant.model';
 
 @Injectable({
   providedIn: 'root'
@@ -24,9 +24,27 @@ export class MerchantService {
 
   constructor() { }
 
+  createMerchant(body : IBodyMerchant) : Observable<IResponse<IMerchant>>{
+    return this.http.post<IResponse<IMerchant>>(`${this.API_URL}/Merchant` , body , {
+      headers : this.getAuthHeaders()
+    });
+  }
+
+  updateMerchant(body : IBodyMerchant, merchantId : number) : Observable<IResponse<IMerchant>>{
+    return this.http.put<IResponse<IMerchant>>(`${this.API_URL}/Merchant/${merchantId}` , body , {
+      headers : this.getAuthHeaders()
+    });
+  }
+
   getPaginatedMerchants(limit: number) : Observable<IResponse<IMerchant[]>> {
     return this.http.get<IResponse<IMerchant[]>>(`${this.API_URL}/Merchant?pageSize=${limit}`, {
       headers: this.getAuthHeaders()
+    });
+  }
+
+  getMerchantById(merchantId: number) : Observable<IResponse<IMerchant>> {
+    return this.http.get<IResponse<IMerchant>>(`${this.API_URL}/Merchant/${merchantId}` , {
+      headers : this.getAuthHeaders()
     });
   }
 

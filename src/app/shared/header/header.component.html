@@ -1,20 +1,25 @@
-<div class="header">
+<header class="header">
     <div class="header__logo">
-        <img class="header__image" src="https://media.licdn.com/dms/image/v2/C560BAQFrN9bKpKYAGg/company-logo_200_200/company-logo_200_200/0/1630449044271/olsoftware_logo?e=2147483647&v=beta&t=hZfpFkQ5kJxOAYUoSzCa-VRazlIVIg3y6RMdBGBikMk">
+        <img class="header__logo-image" src="https://media.licdn.com/dms/image/v2/C560BAQFrN9bKpKYAGg/company-logo_200_200/company-logo_200_200/0/1630449044271/olsoftware_logo?e=2147483647&v=beta&t=hZfpFkQ5kJxOAYUoSzCa-VRazlIVIg3y6RMdBGBikMk" alt="OlSoftware Logo">
     </div>
 
     @if(!isAuthenticated()){
         <div class="header__text">
-            <p>Beneficios por renovar</p>
+            <p class="header__text-content">Beneficios por renovar</p>
         </div>
     }
     
-     @if(isAuthenticated()) {
-        <div class="header__user">
-            <p><strong>{{ userName }}</strong> ({{ userRole }})</p>
-            <button class="logout-button" (click)="logout()">Cerrar sesión</button>
+    @if(isAuthenticated()) {
+        <div class="header__authenticated">
+            <nav class="header__nav">
+                <a (click)="listNav()" class="header__nav-link">Lista Formularios</a>
+                <span class="header__nav-separator">|</span>
+                <a (click)="formNav()" class="header__nav-link">Crear Formulario</a>
+            </nav>
+            <div class="header__user">
+                <p class="header__user-info"><strong>{{ userName }}</strong> ({{ userRole }})</p>
+                <button class="header__logout-button" (click)="logout()">Cerrar sesión</button>
+            </div>
         </div>
-     }
-
-    
-</div>
+    }
+</header>

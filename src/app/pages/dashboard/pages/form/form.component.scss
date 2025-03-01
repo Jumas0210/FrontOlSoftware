@@ -1,0 +1,172 @@
+.page-title {
+    font-size: 28px;
+    color: #333;
+    margin: 20px 0;
+    padding: 0 20px;
+  }
+.main-containt {
+    flex: 1 0 auto;
+    background-color: #E1E6F5;
+}
+  
+  .merchant-form {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 30px;
+    background-color: #E1E6F5;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  
+    &__form {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+  
+    &__header {
+      display: flex;
+      justify-content: flex-start;
+      border-bottom: 2px solid #e0e0e0;
+      padding-bottom: 15px;
+      margin-bottom: 30px;
+    }
+  
+    &__section-title {
+      font-size: 20px;
+      color: #555;
+    }
+  
+    &__fields {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+  
+    &__row {
+      display: flex;
+      gap: 40px;
+  
+      @media (max-width: 768px) {
+        flex-direction: column;
+        gap: 20px;
+      }
+    }
+  
+    &__field {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      flex: 1;
+  
+      &--checkbox {
+        flex-direction: row;
+        align-items: center;
+      }
+    }
+  
+    &__label {
+      font-size: 16px;
+      color: #555;
+  
+      &--checkbox {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        cursor: pointer;
+      }
+    }
+  
+    &__input,
+    &__select {
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 16px;
+      width: 90%;
+  
+      &:focus {
+        outline: none;
+        border-color: #007bff;
+        box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+      }
+    }
+
+    &__input{
+        width: 85%;
+    }
+  
+    &__select {
+      cursor: pointer;
+    }
+  
+    &__checkbox {
+      width: 18px;
+      height: 18px;
+      cursor: pointer;
+    }
+  
+    &__summary {
+      background-color: #e9ecef;
+      padding: 20px;
+      border-radius: 4px;
+      margin-top: 30px;
+    }
+  
+    &__summary-item {
+      font-size: 16px;
+      color: #333;
+      margin: 10px 0;
+    }
+  
+    &__actions {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 30px;
+    }
+  
+    &__submit {
+      padding: 14px 24px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 18px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+  
+      &:hover {
+        background-color: #0056b3;
+      }
+  
+      &:disabled {
+        background-color: #cccccc;
+        cursor: not-allowed;
+      }
+    }
+  }
+  
+  // Responsive design
+  @media (max-width: 768px) {
+    .page-title {
+      font-size: 24px;
+    }
+  
+    .merchant-form {
+      padding: 20px;
+  
+      &__section-title {
+        font-size: 18px;
+      }
+  
+      &__input,
+      &__select,
+      &__submit {
+        font-size: 14px;
+        width: 100%;
+      }
+  
+      &__actions {
+        justify-content: center;
+      }
+    }
+  }

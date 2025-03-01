@@ -10,3 +10,11 @@ export interface IMerchant {
     updatedByUser:    number;
     establishments:   any[];
 }
+
+export interface IBodyMerchant {
+    businessName: string;
+    city:         string;
+    phone:        string;
+    email:        string;
+    status:       string;
+}
